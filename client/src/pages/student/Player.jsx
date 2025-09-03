@@ -9,14 +9,14 @@ import Rating from '../../components/student/Rating';
 
 function Player() {
 
-  const {enrollerdCourses, calculateChapterTime} = useContext(AppContext);
+  const {enrolledCourses, calculateChapterTime} = useContext(AppContext);
   const {courseId} = useParams();
   const [courseData,setCourseData] = useState(null);
     const [openSections,setOpenSections] = useState({});
     const [playerData,setPlayerData] = useState(null);
 
   const getCourseData = ()=> {
-    enrollerdCourses.map((course)=>{
+    enrolledCourses.map((course)=>{
         if(course._id == courseId){
           setCourseData(course);
         }
@@ -32,7 +32,7 @@ function Player() {
 
   useEffect(()=>{
     getCourseData();
-  },[enrollerdCourses])
+  },[enrolledCourses])
 
   return (
   <>

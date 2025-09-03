@@ -20,7 +20,7 @@ export const AppContextProvider = (props) => {
 
     const [allCourses, setAllCourses] = useState([]);
     const [isEducator, setisEducator] = useState(false);
-    const [enrolledCourses, setEnrollerdCourses] = useState([]);
+    const [enrolledCourses, setEnrolledCourses] = useState([]);
     const [userData, setUserData] = useState(null);
 
     // fatch all courses
@@ -106,7 +106,7 @@ export const AppContextProvider = (props) => {
             console.log(data);
 
             if(data.success){
-                setEnrollerdCourses(data.enrolledCourses.reverse());
+                setEnrolledCourses(data.enrolledCourses.reverse());
             }else{
                 toast.error(data.message);
             }

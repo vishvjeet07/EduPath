@@ -2,7 +2,6 @@ import User from "../models/User.js";
 import Stripe from "stripe";
 import Course from "../models/Course.js";
 import { Purchase } from "../models/Purchase.js";
-import { response } from "express";
 
 // Get user data
 export const getUserData = async(req,res)=>{
@@ -97,28 +96,31 @@ export const stripeWebhooks = async(req,res)=>{
   catch (err) {
     res.status(400).send(`Webhook Error: ${err.message}`);
   }
+
+
   switch (event.type) {
     case 'payment_intent.succeeded':{
       const paymentIntent = event.data.object;
       const paymentIntentId = paymentIntent.id;
+
       const session = await stripInstance.checkout.sessions.list({
         payment_intent: paymentIntentId
       })
 
-      const {purchaseId} = session.data[0].metadata;
+      const { purchaseId } = session.data[0].metadata;
 
       const purchaseData = await Purchase.findById(purchaseId);
       const userData = await User.findById(purchaseData.userId);
-      const courseData = await Course.findById(purchaseData?.courseId.toString());
+      const courseData = await Course.findById(purchaseData.courseId.toString());
 
       courseData.enrolledStudents.push(userData);
       await courseData.save();
 
-      userData?.enrolledCourses.push(courseData);
-      await userData();
+      userData.enrolledCourses.push(courseData._id);
+      await userData.save();
 
       purchaseData.status = 'completed'
-      await purchaseData?.save();
+      await purchaseData.save();
 
       break;
     }

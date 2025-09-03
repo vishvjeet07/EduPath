@@ -119,7 +119,9 @@ export const AppContextProvider = (props) => {
     },[])
 
     useEffect(()=>{
-        fetchUserEnrolledCourses();
+        if(user){
+            fetchUserEnrolledCourses();
+        }
     },[])
 
     useEffect(()=>{

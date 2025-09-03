@@ -153,11 +153,11 @@ export const updateUserCourseProgress = async (req,res)=>{
         const { courseId, lectureId } = req.body;
 
         const progressData = await CourseProgress.findOne({ userId, courseId});
-
         if(progressData){
             if(progressData.lectureCompleted.includes(lectureId)){
-                res.json({success: true, message: 'Lectures Already Completed'})
+                return res.json({success: true, message: 'Lectures Already Completed'})
             }
+
             progressData.lectureCompleted.push(lectureId)
             await progressData.save();
         }else {
@@ -168,7 +168,8 @@ export const updateUserCourseProgress = async (req,res)=>{
             })
         }
 
-        res.json({success: true, message: 'Progress updated'})
+        res.json({success: true, message: 'Progress updated'});
+
     } catch (error) {
         res.json({ success: false, message: error.message });
     }
@@ -179,7 +180,7 @@ export const getUserCourseProgress = async(req,res) =>{
         const userId = req.auth.userId;
         const { courseId } = req.body;
         const progressData = await CourseProgress.findOne({ userId, courseId});
-        res.json({succese: true, progressData})
+        res.json({success: true, progressData})
 
     } catch (error) {
         res.json({ success: false, message: error.message });

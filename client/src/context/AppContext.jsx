@@ -19,7 +19,7 @@ export const AppContextProvider = (props) => {
     const { user } = useUser();
 
     const [allCourses, setAllCourses] = useState([]);
-    const [isEducator, setisEducator] = useState(false);
+    const [isEducator, setIsEducator] = useState(false);
     const [enrolledCourses, setEnrolledCourses] = useState([]);
     const [userData, setUserData] = useState(null);
 
@@ -44,7 +44,7 @@ export const AppContextProvider = (props) => {
     const fetchUserData = async()=>{
 
         if(user.publicMetadata.role === 'educator'){
-            setisEducator(true)
+            setIsEducator(true)
         }
         try {
             const token = await getToken();
@@ -103,7 +103,6 @@ export const AppContextProvider = (props) => {
         try {
             const token = await getToken();
             const {data} = await axios.get(backendUrl + '/api/user/enrolled-courses',{headers: {Authorization: `Bearer ${token}`}});
-            console.log(data);
 
             if(data.success){
                 setEnrolledCourses(data.enrolledCourses.reverse());
@@ -130,7 +129,7 @@ export const AppContextProvider = (props) => {
     },[user])
 
     const value = {
-        currency, allCourses, navigate, calculateRating, isEducator, setisEducator, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures, enrolledCourses, fetchUserEnrolledCourses, backendUrl, userData, setUserData, getToken, fetchAllCourses
+        currency, allCourses, navigate, calculateRating, isEducator, setIsEducator, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures, enrolledCourses, fetchUserEnrolledCourses, backendUrl, userData, setUserData, getToken, fetchAllCourses
     }
     return (
         <AppContext.Provider value={value}>

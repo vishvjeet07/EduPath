@@ -6,8 +6,8 @@ function Footer() {
     <footer className='bg-gray-900 md:px-36 text-left w-full mt-10'>
       <div className='flex flex-col md:flex-row items-start px-8 md:px-0 justify-center gap-10 md:gap-32 py-10 border-b border-white/30'>
         <div className='flex flex-col md:items-start items-center w-full'>
-          <img src={assets.logo_dark} alt="logo" />
-          <p className='mt-6 text-center md:text-left text-sm text-white/80'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur deleniti non amet nulla, ex debitis a fugiat delectus praesentium illum.</p>
+          <img width={120} src={assets.logo2} alt="logo" />
+          <p className='mt-6 text-center md:text-left text-sm text-white/80'>EduPath is a course-selling platform that connects educators and learners. It enables educators to easily create and monetize courses while providing students with a seamless, engaging, and accessible learning experience.</p>
         </div>
         <div className='flex flex-col md:items-start items-center w-full'>
           <h2 className='font-semibold text-white mb-5'>Company</h2>

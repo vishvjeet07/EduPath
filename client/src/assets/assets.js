@@ -42,10 +42,12 @@ import profile_img from './profile_img.png'
 import profile_img2 from './profile_img2.png'
 import profile_img3 from './profile_img3.png'
 import lesson_icon from './lesson_icon.svg'
+import logo2 from './logo2.svg'
 
 
 export const assets = {
     logo,
+    logo2,
     search_icon,
     sketch,
     microsoft_logo,
